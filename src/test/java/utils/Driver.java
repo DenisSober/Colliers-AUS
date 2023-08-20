@@ -17,8 +17,8 @@ public class Driver {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*","--incognito");
 
+
             driver = new ChromeDriver(options);
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Constants.SHORT_DURATION));
             driver.get("https://www.colliers.com.au/en-au");
             driver.manage().window().maximize();
 

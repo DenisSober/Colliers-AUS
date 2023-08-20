@@ -4,18 +4,15 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.ExpertsPage;
+
 import steps.CookiesStep;
 import steps.ExpertsPageStep;
 import steps.NavigationBarStep;
 import utils.Driver;
 
-import java.util.Iterator;
-import java.util.List;
-
 import static utils.Driver.driver;
 
-public class ExpertsSearchByLocation {
+public class AssetNumberInDropdownEqualsNumberOfExpertsWithThisAsset {
 
     @BeforeMethod
     public void openHomePage() {
@@ -27,26 +24,36 @@ public class ExpertsSearchByLocation {
     }
 
     @Test
-    public void testSearchByLocation () {
+    public void assetClassNumberEqualsNumberOfCards() {
         NavigationBarStep navigationBarStep1 = new NavigationBarStep();
         navigationBarStep1.openExpertFinderDropdown();
         NavigationBarStep navigationBarStep2 = new NavigationBarStep();
         navigationBarStep2.goToFindAnExpert();
         ExpertsPageStep expertsPageStep1 = new ExpertsPageStep();
-        List<String> cities = expertsPageStep1.getTestCitiesList();
-        Iterator<String> iterator = cities.iterator();
-        while (iterator.hasNext()) {
-            String city = iterator.next();
-            ExpertsPageStep expertsPageStep2 = new ExpertsPageStep();
-            expertsPageStep2.selectTheLocation(city);
-            ExpertsPageStep expertsPageStep3 = new ExpertsPageStep();
-            expertsPageStep3.compareSearchCityWithExpertCity(city);
-            ExpertsPageStep expertsPageStep4 = new ExpertsPageStep();
-            expertsPageStep4.clearLocationField(city);
-        }
+        expertsPageStep1.openAssetClassDropdown();
+        ExpertsPageStep expertsPageStep2 = new ExpertsPageStep();
+        int numOfRetail = expertsPageStep2.getNumberOfRetail();
+        System.out.println(numOfRetail);
+        ExpertsPageStep expertsPageStep3 = new ExpertsPageStep();
+        expertsPageStep3.selectRetailAssertClass();
+        ExpertsPageStep expertsPageStep4 = new ExpertsPageStep();
+        int exBesidesLast = expertsPageStep4.countExpertsBesidesLast();
+        ExpertsPageStep expertsPageStep5 = new ExpertsPageStep();
+        int exOnLast = expertsPageStep5.countExpertsOnTheLastPage();
+        int allCards = exBesidesLast + exOnLast;
+        System.out.println(allCards);
+        Assert.assertTrue(numOfRetail == allCards);
+
+
+
+
     }
+
+
     @AfterMethod
     public void closeBrowser (){
         driver.quit();
     }
+
+
 }

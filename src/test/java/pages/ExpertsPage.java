@@ -15,25 +15,55 @@ import static utils.Driver.driver;
 
 public class ExpertsPage {
 
-    private final WebElement assetClassDropdown = driver.findElement(By.xpath("//div[@class = 'custom-facet']/div[@id = 'PropertyType']/div[1]/div[1]/div[3]/span"));
-    private final String assetRetailClassLoc = "//span[@title = 'Retail']";
-    private final WebElement firstExpertCard = driver.findElement(By.xpath("//div[@class = 'coveo-result-list-container coveo-list-layout-container']/div[1]"));
+    private final WebElement assetClassArrow = driver.findElement(By.xpath("//div[@id = 'PropertyType']//span[@class = 'coveo-icon']"));
 
-    private final WebElement firstExpertImage = driver. findElement(By.xpath("//div[@class = 'coveo-result-list-container coveo-list-layout-container']/div[1]//img"));
-    private final WebElement expertsContainer = driver.findElement(By.xpath("//div[@class = 'coveo-result-list-container coveo-list-layout-container']"));
+    //Assets:
+    private final String retailAssetClassLoc = "//span[@title = 'Retail']";
+    private final WebElement locationArrow = driver.findElement(By.xpath("//div[@id = 'location']//span[@class = 'coveo-icon']"));
+
+    //Locations:
+    private final String adelaideLocationLoc = "//span[@title = 'Adelaide']";
+
+    private final WebElement serviceArrow = driver.findElement(By.xpath("//div[@id = 'services']//span[@class = 'coveo-icon']"));
+
+    //Services:
+    private final WebElement realEstManServicesServ = driver.findElement(By.xpath("//span[@title = 'Real Estate Management Services']"));
+
+    private final WebElement firstExpertCard = driver.findElement(By.xpath("//div[contains(@class, 'coveo-result-list')]/div[1]"));
+
+    private final WebElement firstExpertImage = driver. findElement(By.xpath("//div[contains(@class, 'coveo-result-list')]/div[1]//img"));
+    private final WebElement expertsContainer = driver.findElement(By.xpath("//div[contains(@class, 'coveo-result-list')]"));
     private final String nextPageButtonLock = "//li[@aria-label = 'Next']";
 
     private final WebElement keyWordsSearchField = driver.findElement(By.xpath("//input[@placeholder = 'Keywords']"));
 
     private final WebElement cleanKeyWordSearchButton = driver.findElement(By.xpath("//div[@id = 'specialization-keywords']//div[@aria-label = 'Clear']"));
-    private final WebElement firstExpertLocation = driver.findElement(By.xpath("//div[@class = 'coveo-result-list-container coveo-list-layout-container']/div[1]//p[@class = 'expert-office']"));
+    private final WebElement firstExpertLocation = driver.findElement(By.xpath("//div[contains(@class, 'coveo-result-list')]/div[1]//p[@class = 'expert-office']"));
 
     private final WebElement keyWordsSearchButton = driver. findElement(By.xpath("//div[@id = 'specialization-keywords_container']//a[@aria-label = 'Search']"));
-    private final WebElement locationDropDown = driver.findElement(By.xpath("//div[@id = 'location']/div[@class = 'coveo-facet-header']/div/div[3]/span"));
 
 
-    public void openAssetClassDropdown() {
-        assetClassDropdown.click();
+
+    public void clickAssetClassArrow() {
+        assetClassArrow.click();
+    }
+    //For Asset checkboxes:
+    public void clickRetailAssertClass() {
+        driver.findElement(By.xpath(retailAssetClassLoc)).click();
+    }
+
+    public void clickLocationArrow() {
+        locationArrow.click();
+    }
+    //For Location checkboxes:
+    public void clickAdelaideLocation() {driver.findElement(By.xpath(adelaideLocationLoc)).click();}
+
+    public void clickServiceArrow(){
+        serviceArrow.click();
+    }
+    //For Service checkboxes:
+    public void clickRealEstateMan (){
+        realEstManServicesServ.click();
     }
 
     public void clickNextPageButton() {
@@ -43,12 +73,10 @@ public class ExpertsPage {
         wait.until(ExpectedConditions.presenceOfElementLocated(expertOne));
     }
 
-    public void selectAssetRetailClass() {
-        driver.findElement(By.xpath(assetRetailClassLoc)).click();
-    }
+
 
     public String getTextOfRetail() {
-        String retailText = driver.findElement(By.xpath(assetRetailClassLoc)).getText();
+        String retailText = driver.findElement(By.xpath(retailAssetClassLoc)).getText();
         return retailText;
 
     }
@@ -68,9 +96,7 @@ public class ExpertsPage {
         return expertLocation;
     }
 
-    public void openLocationDropdown() {
-        locationDropDown.click();
-    }
+
 
     public void uncheckLocationBox(String city) {
         WebElement anyLocationBox = driver.findElement(By.xpath("//span[@title = '" + city + "']"));
@@ -85,7 +111,7 @@ public class ExpertsPage {
         keyWordsSearchButton.click();
     }
 
-    public void clickFirstExpertImage(){
+    public void clickFirstExpertCard(){
         firstExpertImage.click();
     }
 

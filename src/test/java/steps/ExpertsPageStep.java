@@ -21,18 +21,46 @@ import static utils.Driver.driver;
 
 public class ExpertsPageStep {
 
-    public void openAssetClassDropdown() {
+    public void openLocationDropdown() {
         ExpertsPage expertsPage = new ExpertsPage();
-        expertsPage.openAssetClassDropdown();
+        expertsPage.clickLocationArrow();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.SHORT_DURATION));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[@data-value = 'Retail']/label/div/div")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@title = 'Adelaide']")));
+    }
+    //Location selection methods:
+    public void selectAdelaideLocation() {
+        ExpertsPage expertsPage = new ExpertsPage();
+        expertsPage.clickAdelaideLocation();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.LONG_DURATION));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@title = 'Adelaide']")));
     }
 
-    public void selectAssetRetail() {
+    public void openAssetClassDropdown() {
         ExpertsPage expertsPage = new ExpertsPage();
-        expertsPage.selectAssetRetailClass();
+        expertsPage.clickAssetClassArrow();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.SHORT_DURATION));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@title = 'Retail']")));
+    }
+   //Asset selection methods:
+    public void selectRetailAssertClass() {
+        ExpertsPage expertsPage = new ExpertsPage();
+        expertsPage.clickRetailAssertClass();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.LONG_DURATION));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@title = 'Retail']")));
+    }
+
+    public void openServiceDropdown() {
+        ExpertsPage expertsPage = new ExpertsPage();
+        expertsPage.clickServiceArrow();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.LONG_DURATION));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@title = 'Real Estate Management Services']")));
+    }
+    //Service selection methods:
+    public void selectRealEstateManagementService(){
+        ExpertsPage expertsPage = new ExpertsPage();
+        expertsPage.clickRealEstateMan();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.LONG_DURATION));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@title = 'Real Estate Management Services']")));
     }
 
     public int getNumberOfRetail() {
@@ -68,7 +96,7 @@ public class ExpertsPageStep {
 
     public void selectTheLocation(String city) {
         ExpertsPage expertsPage = new ExpertsPage();
-        expertsPage.openLocationDropdown();
+        expertsPage.clickLocationArrow();
         WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(Constants.SHORT_DURATION));
         wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@title = 'Adelaide']")));
         WebElement aLocation = driver.findElement(By.xpath("//span[@title = '" + city + "']"));
@@ -111,7 +139,7 @@ public class ExpertsPageStep {
 
     public void clearLocationField(String city) {
         ExpertsPage expertsPage1 = new ExpertsPage();
-        expertsPage1.openLocationDropdown();
+        expertsPage1.clickLocationArrow();
         WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(Constants.SHORT_DURATION));
         wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@title = 'Adelaide']")));
         ExpertsPage expertsPage2 = new ExpertsPage();
@@ -135,9 +163,9 @@ public class ExpertsPageStep {
 
     public void openFirstExpertProfile(){
         ExpertsPage expertsPage = new ExpertsPage();
-        expertsPage.clickFirstExpertImage();
+        expertsPage.clickFirstExpertCard();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.EXTRA_LONG_DURATION));
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id = 'expert-nav']/li[1]/a")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href = '#expert-about']")));
     }
 
     public void clearKeyWordSearch(){
