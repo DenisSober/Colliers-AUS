@@ -27,7 +27,7 @@ public class ExpertsPage {
     private final WebElement serviceArrow = driver.findElement(By.xpath("//div[@id = 'services']//span[@class = 'coveo-icon']"));
 
     //Services:
-    private final WebElement realEstManServicesServ = driver.findElement(By.xpath("//span[@title = 'Real Estate Management Services']"));
+    private final String realEstManServicesServLoc = "//span[@title = 'Real Estate Management Services']";
 
     private final WebElement firstExpertCard = driver.findElement(By.xpath("//div[contains(@class, 'coveo-result-list')]/div[1]"));
 
@@ -63,7 +63,7 @@ public class ExpertsPage {
     }
     //For Service checkboxes:
     public void clickRealEstateMan (){
-        realEstManServicesServ.click();
+        driver.findElement((By.xpath(realEstManServicesServLoc))).click();
     }
 
     public void clickNextPageButton() {

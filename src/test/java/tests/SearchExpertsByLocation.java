@@ -31,16 +31,16 @@ public class SearchExpertsByLocation {
         navigationBarStep1.openExpertFinderDropdown();
         NavigationBarStep navigationBarStep2 = new NavigationBarStep();
         navigationBarStep2.goToFindAnExpert();
-        ExpertsPageStep expertsPageStep1 = new ExpertsPageStep();
-        List<String> cities = expertsPageStep1.getTestCitiesList();
+        ExpertsPageStep expertsPageStep3 = new ExpertsPageStep();
+        List<String> cities = expertsPageStep3.getTestCitiesList();
         Iterator<String> iterator = cities.iterator();
         while (iterator.hasNext()) {
             String city = iterator.next();
-            ExpertsPageStep expertsPageStep2 = new ExpertsPageStep();
-            expertsPageStep2.selectTheLocation(city);
-            ExpertsPageStep expertsPageStep3 = new ExpertsPageStep();
-            expertsPageStep3.compareSearchCityWithExpertCity(city);
             ExpertsPageStep expertsPageStep4 = new ExpertsPageStep();
+            expertsPageStep4.selectTheLocation(city);
+            ExpertsPageStep expertsPageStep5 = new ExpertsPageStep();
+            expertsPageStep5.compareSearchCityWithExpertCity(city);
+            ExpertsPageStep expertsPageStep6 = new ExpertsPageStep();
             expertsPageStep4.clearLocationField(city);
         }
 
